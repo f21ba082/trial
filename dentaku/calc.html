@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電卓</title>
+    <style>
+        .bt {
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+        }
+        #result {
+            width: 208px;
+            height: 30px;
+            font-size: 25px;
+            text-align: right;
+        }
+    </style>
+    <script>
+        let gNum = 0;
+        let gKigo = "";
+
+        // 色を戻す
+        function initColor () {
+            document.getElementById("result").style.color = "#000000";
+            document.getElementById("result").style.backgroundColor = "#FFFFFF";
+        }
+
+        // クリアが押下された場合
+        function pushClear() {
+            document.getElementById("result").value = "0";
+            gNum = 0;
+            gKigo = "";
+            initColor();
+        }
+
+        // 数字が押下（おうか）された場合
+        function pushbutton(aValue) {
+            let result = document.getElementById("result").value;
+            document.getElementById("result").value = parseInt(result + aValue, 10);
+            initColor();
+        }
+
+        // 記号(+, -, *, /)が押下された場合
+        function pushCalc(aValue) {
+            let result = document.getElementById("result").value;
+            // 文字列を数値に変換
+            gNum = parseInt(result, 10);
+            gKigo = aValue;
+
+            document.getElementById("result").value = "0";
+        }
+
+        // イコールが押下された場合
+        function pushEqual() {
+            let result = document.getElementById("result").value;
+            let num = parseInt(result, 10);
+            let ans = 0;
+        }
+            if (gKigo == "+") {
+                ans = gNum + num;
+            } else if (gKigo == "-") {
+                ans = gNum - num;
+            } else if (gKigo == "*") {
+                ans = gNum * num;
+            } else if (gKigo == "/") {
+                if (gKigo == "/") {
+                (num == 0) 
+                    ans = "Error";
+                    document.getElementById("result").style.color = "#000000";
+                    document.getElementById("result").style.backgroundColor = "#FFFFFF";
+                } else {
+                    ans = gNum / num;
+            }
+            }
+
+            document.getElementById("result").value = ans;
+    </script>
+</head>
+<body>
+    <input id="result" type="text" value="0"><br>
+    <input class="bt" type="button" value="C">
+    <input class="bt" type="button" value="/" onclick="pushCalc(this.value)">
+    <input class="bt" type="button" value="*" onclick="pushCalc(this.value)">
+    <input class="bt" type="button" value="-" onclick="pushCalc(this.value)">
+    <br>
+    <input class="bt" type="button" value="7" onclick="pushButton(this.value)">
+    <input class="bt" type="button" value="8" onclick="pushButton(this.value)">
+    <input class="bt" type="button" value="9" onclick="pushButton(this.value)">
+    <input class="bt" type="button" value="+" onclick="pushCalc(this.value)">
+    <br>
+    <input class="bt" type="button" value="4" onclick="pushButton(this.value)">
+    <input class="bt" type="button" value="5" onclick="pushButton(this.value)">
+    <input class="bt" type="button" value="6" onclick="pushButton(this.value)">
+    <br>
+    <input class="bt" type="button" value="1" onclick="pushButton(this.value)">
+    <input class="bt" type="button" value="2" onclick="pushButton(this.value)">
+    <input class="bt" type="button" value="3" onclick="pushButton(this.value)">
+    <input class="bt" type="button" value="=" onclick="pushEqual(this.value)">
+    <br>
+    <input class="bt" type="button" value="0" onclick="pushButton(this.value)">
+    <input class="bt" type="button" value="00" onclick="pushButton(this.value)">
+    <input class="bt" type="button" value=".">
+</body>
+</html>
