@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おみくじ</title>
+    <style>
+        body {
+            text-align:center;  
+            background-color: rgb(208, 64, 64);
+        }
+        input {
+            width: 200px;
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background:white;color:red;
+        }
+    </style>
+</head>
+<body>
+    <input id="omikuji_btn" type="button" value="おみくじを引く">
+    <script>
+        document.getElementById("omikuji_btn").onclick = function() {
+            var rnd = Math.floor(Math.random() * 7);
+            var omikuji;
+            if (rnd === 0) omikuji = "大吉";
+            if (rnd === 1) omikuji = "吉";
+            if (rnd === 2) omikuji = "中吉";
+            if (rnd === 3) omikuji = "小吉";
+            if (rnd === 4) omikuji = "末吉";
+            if (rnd === 5) omikuji = "凶";
+            if (rnd === 6) omikuji = "大凶";
+            alert(omikuji);
+        }
+    </script>
+</body>
+</html>
